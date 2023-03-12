@@ -1,0 +1,26 @@
+{
+  "name": "pcat",
+  "version": "1.0.0",
+  "description": "PCAT Photo App",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/thenabiev/PCAT.git"
+  },
+  "keywords": [
+    "photo",
+    "app"
+  ],
+  "author": "Shahin Nabiev",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/thenabiev/PCAT/issues"
+  },
+  "homepage": "https://github.com/thenabiev/PCAT#readme",
+  "devDependencies": {
+    "prettier": "2.8.4"
+  }
+}
