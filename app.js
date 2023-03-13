@@ -1,41 +1,30 @@
 const express = require('express');
+const ejs = require('ejs');
 
 const app = express();
-const path=require('path')
+const path = require('path');
 
-const myLogger=(req, res, next)=>{
-  console.log('Middleware Log 1');
-  next()
-}
-
-const myLogger2=(req, res, next)=>{
-  console.log('Middleware Log 2');
-  next()
-}
+// Template engine
+app.set("view engine", "ejs")
 
 // Middlewares
 app.use(express.static('public'));
-app.use(myLogger)
-app.use(myLogger2)
 
+// Routes
+app.get('/', (req, res) => {
+  res.render('index');
+  // res.sendFile(path.resolve(__dirname, 'temp/index.html'))
+});
 
-app.get('/', (req, res)=>{
+app.get('/about', (req, res) => {
+  res.render('about');
+  // res.sendFile(path.resolve(__dirname, 'temp/index.html'))
+});
 
-  res.sendFile(path.resolve(__dirname, 'temp/index.html'))
-
-    // const photo={
-    //     id:1,
-    //     name:"Thumbnail",
-    //     description:"Lorem ipsum dolor sit amet",
-    //     src: "https://picsum.photos/200/300"
-    // }
-    
-    // res.send(`
-    //   <h2 style="text-align:center;">${photo.name}</h2>
-    //   <p style="text-align:center;">${photo.name}</p>
-    //   <img style="position:relative; left:50%; transform:translateX(-50%);" src=${photo.src}/>
-    // `)
-})
+app.get('/add-photo', (req, res) => {
+  res.render('add-photo');
+  // res.sendFile(path.resolve(__dirname, 'temp/index.html'))
+});
 
 const port = 3000;
 
