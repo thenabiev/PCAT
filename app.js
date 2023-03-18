@@ -9,6 +9,8 @@ app.set("view engine", "ejs")
 
 // Middlewares
 app.use(express.static('public'));
+app.use(express.urlencoded({extended:true}));
+app.use(express.json())
 
 // Routes
 app.get('/', (req, res) => {
@@ -24,6 +26,12 @@ app.get('/about', (req, res) => {
 app.get('/add-photo', (req, res) => {
   res.render('add-photo');
   // res.sendFile(path.resolve(__dirname, 'temp/index.html'))
+});
+
+
+app.post('/photos', (req, res) => {
+  console.log(req.body);
+  res.redirect('/')
 });
 
 const port = 3000;
