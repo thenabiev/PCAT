@@ -4,6 +4,14 @@ const ejs = require('ejs');
 const app = express();
 const path = require('path');
 
+const mongoose=require("mongoose");
+const Photo=require("./models/Photo");
+
+
+
+// Connect DB
+mongoose.connect('mongodb://localhost/pcat-database')
+
 // Template engine
 app.set("view engine", "ejs")
 
@@ -13,8 +21,13 @@ app.use(express.urlencoded({extended:true}));
 app.use(express.json())
 
 // Routes
-app.get('/', (req, res) => {
-  res.render('index');
+app.get('/', async (req, res) => {
+  const photos=await Photo.find({})
+
+
+  res.render('index', {
+    photos
+  });
   // res.sendFile(path.resolve(__dirname, 'temp/index.html'))
 });
 
@@ -29,8 +42,8 @@ app.get('/add-photo', (req, res) => {
 });
 
 
-app.post('/photos', (req, res) => {
-  console.log(req.body);
+app.post('/photos', async (req, res) => {
+  await Photo.create(req.body)
   res.redirect('/')
 });
 
